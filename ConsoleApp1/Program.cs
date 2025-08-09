@@ -97,29 +97,45 @@ namespace ConsoleApp1
             //{
             //    Console.WriteLine("Hello number is not 0");
             //}
+            int TotalCoffeeCost = 0;
 
-            
-                Console.Write("Please Enter a Number: ");
-                int userNumber = int.Parse(Console.ReadLine());
+            Start:
+            Console.Write("1. Small, 2. Medium, 3. Large: ");
+            int userChoice = int.Parse(Console.ReadLine());
 
-            switch (userNumber)
+            switch (userChoice)
             {
-                case 10:
-                    Console.WriteLine("Your Number is 10");
-                    break;
-                case 20:
-                    Console.WriteLine("Your Number is 20");
-                    break;
-                case 30:
-                    Console.WriteLine("Your Number is 30");
+                case 1:
+                    
+                case 2:
+                    
+                case 3:
+                    TotalCoffeeCost += userChoice;
                     break;
                 default:
-                    Console.WriteLine("Number is not in range");
-                    break;
+                    Console.WriteLine("Please Choose Number between number 1 and 3");
+                    goto Start;
             }
 
-            
+            Ask:
+            Console.Write("Do you want to buy another coffee? Yes or No: ");
+
+            string userDecision = Console.ReadLine();
+
+            switch (userDecision.ToLower())
+            {
+                case "yes":
+                    goto Start;
+                case "no":
+                    break;
+                default:
+                    Console.WriteLine("Your Choice is invalid...Please try Again..");
+                    goto Ask;
+            }
+
+            Console.WriteLine("Your TotalCoffeeCost: {0}", TotalCoffeeCost);
 
         }
+        
     }
 }
