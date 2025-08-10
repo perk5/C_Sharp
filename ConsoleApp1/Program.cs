@@ -1,13 +1,51 @@
 ﻿using System;
-using ProjectA.TeamA;
+using PATA = ProjectA.TeamA;
+using PATB = ProjectA.TeamB;
+
 
 namespace ConsoleApp1
 {
+
+    class Customer
+    {
+        string _firstName;
+        string _lastName;
+
+       
+
+        public Customer(string FirstName, string LastName)
+        {
+            this._firstName = FirstName;
+            this._lastName = LastName;  
+        }
+
+        public Customer() : this("No firstName", "lastName provided")
+        {
+
+        }
+
+        public void PrintFullName()
+        {
+            Console.WriteLine(this._firstName + " " + this._lastName);
+        }
+
+        ~Customer() 
+        {
+            //Clean Up Code
+        }
+
+    }
     public class Program
     {
 
         static void Main(string[] args)
         {
+
+            Customer C1 = new Customer("Prerak", "Shah");
+            C1.PrintFullName();
+
+
+
             //Console.Write("Please enter your first name: ");
             //string firstname = Console.ReadLine();
 
@@ -216,8 +254,8 @@ namespace ConsoleApp1
 
             //ParamsMethod(numbers);
 
-            ClassA.Print();
-            ProjectA.TeamB.ClassA.Print();
+            //PATA.ClassA.Print();
+            //PATB.ClassA.Print();
 
         }
        
@@ -225,36 +263,7 @@ namespace ConsoleApp1
 }
 
 
-namespace ProjectA
-{
-    namespace TeamA
-    {
-        class ClassA
-        {
-            public static void Print()
-            {
-                Console.WriteLine("Team A print method");
-            }
-        }
-    }
-    
-}
 
-
-namespace ProjectA
-{
-    namespace TeamB
-    {
-        class ClassA
-        {
-            public static void Print()
-            {
-                Console.WriteLine("Team B print method");
-            }
-        }
-    }
-
-}
 
 //public static void ParamsMethod(params int[] numbers)
 //{
