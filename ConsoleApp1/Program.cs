@@ -1,5 +1,5 @@
 ﻿using System;
-
+using ProjectA.TeamA;
 
 namespace ConsoleApp1
 {
@@ -195,29 +195,95 @@ namespace ConsoleApp1
             //    count++;
             //}
 
-            Program.EvenNumbers(30);
-            Program p = new Program();
-            int sum = p.Add(20, 30);
-            Console.WriteLine(sum);    
+            //Program.EvenNumbers(30);
+            //Program p = new Program();
+            //int sum = p.Add(20, 30);
+            //Console.WriteLine(sum);
 
+            //int total = 0;
+            //int Product = 0;
+            //Program.Addition(10, 20, out total, out Product);
+
+            //Console.WriteLine(total);
+            //Console.WriteLine(Product);
+
+
+            //int[] numbers = new int[3];
+
+            //numbers[0] = 1;     
+            //numbers[1] = 2;
+            //numbers[2] = 3;
+
+            //ParamsMethod(numbers);
+
+            ClassA.Print();
+            ProjectA.TeamB.ClassA.Print();
 
         }
-
-        public int Add(int Fn, int Sn)
-        {
-            return Fn + Sn;
-        }
-
-        public static void EvenNumbers(int target)
-        {
-            int start = 0;
-
-            while(start <= target)
-            {
-                Console.WriteLine(start);
-                start += 2;
-            }
-        }
-        
+       
     }
 }
+
+
+namespace ProjectA
+{
+    namespace TeamA
+    {
+        class ClassA
+        {
+            public static void Print()
+            {
+                Console.WriteLine("Team A print method");
+            }
+        }
+    }
+    
+}
+
+
+namespace ProjectA
+{
+    namespace TeamB
+    {
+        class ClassA
+        {
+            public static void Print()
+            {
+                Console.WriteLine("Team B print method");
+            }
+        }
+    }
+
+}
+
+//public static void ParamsMethod(params int[] numbers)
+//{
+//    Console.WriteLine(" There are {0} elements ", numbers.Length);
+
+//    foreach (int number in numbers)
+//    {
+//        Console.WriteLine(number);
+//    }
+//}
+
+//public static void Addition(int Fn, int Sn, out int sum, out int Product)
+//{
+//    sum =  Fn + Sn;
+//    Product = Fn * Sn;
+//}
+
+//public int Add(int Fn, int Sn)
+//{
+//    return Fn + Sn;
+//}
+
+//public static void EvenNumbers(int target)
+//{
+//    int start = 0;
+
+//    while(start <= target)
+//    {
+//        Console.WriteLine(start);
+//        start += 2;
+//    }
+//}
