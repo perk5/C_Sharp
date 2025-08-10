@@ -8,134 +8,169 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            //Console.Write("Please enter your first name: ");
-            //string firstname = Console.ReadLine();
+        //Console.Write("Please enter your first name: ");
+        //string firstname = Console.ReadLine();
 
-            //Console.Write("Enter your last name: ");
-            //string lastName = Console.ReadLine();
+        //Console.Write("Enter your last name: ");
+        //string lastName = Console.ReadLine();
 
-            //Console.WriteLine("Hello {0} {1}", firstname, lastName);
+        //Console.WriteLine("Hello {0} {1}", firstname, lastName);
 
-            //bool Age = true;
-
-
-            //Console.WriteLine("Min Value: {0}", uint.MinValue);
-            //Console.WriteLine("Max Value: {0}", uint.MaxValue);
-            //double d = 23.22222222;
-            //Console.WriteLine(d);
-
-            //string name = "One\ntwo\nthree";
-            //Console.WriteLine(name);
-            //string path = @"c:\prerak\DotNet";
-            //Console.WriteLine(path);
-
-            //int Numerator = 10;
-            //int Denominator = 2;    
-
-            //int Result = Numerator / Denominator;
-            //int password = 10;
-            ////bool reEnterPassword = true;
-
-            //bool positive =  password == 110 ? true : false;
-            //Console.WriteLine(positive);
-
-            //Console.WriteLine(" Result = {0} ", Result);
+        //bool Age = true;
 
 
+        //Console.WriteLine("Min Value: {0}", uint.MinValue);
+        //Console.WriteLine("Max Value: {0}", uint.MaxValue);
+        //double d = 23.22222222;
+        //Console.WriteLine(d);
 
-            //string Name = null; 
-            //int? i = null;
+        //string name = "One\ntwo\nthree";
+        //Console.WriteLine(name);
+        //string path = @"c:\prerak\DotNet";
+        //Console.WriteLine(path);
 
-            //bool? AreYouMajor = true;
+        //int Numerator = 10;
+        //int Denominator = 2;    
 
-            //int? TicketOnSale = 10;
+        //int Result = Numerator / Denominator;
+        //int password = 10;
+        ////bool reEnterPassword = true;
 
-            //int? AvailableTickets = TicketOnSale ?? 0;
-            //Console.WriteLine(AvailableTickets);
+        //bool positive =  password == 110 ? true : false;
+        //Console.WriteLine(positive);
+
+        //Console.WriteLine(" Result = {0} ", Result);
 
 
-            //float f = 23.434F;
 
-            //int i = Convert.ToInt32(f);
+        //string Name = null; 
+        //int? i = null;
 
-            //Console.WriteLine(i);
+        //bool? AreYouMajor = true;
 
-            //string number = "100";
+        //int? TicketOnSale = 10;
 
-            //int result = 0;
+        //int? AvailableTickets = TicketOnSale ?? 0;
+        //Console.WriteLine(AvailableTickets);
 
-            //bool isConversionSuccessful = int.TryParse(number, out result);
 
-            //if (isConversionSuccessful)
-            //{
-            //    Console.WriteLine(result);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Cannot Convert the string into an array");
-            //}
+        //float f = 23.434F;
 
-            //Console.WriteLine(result);  
+        //int i = Convert.ToInt32(f);
 
-            //int[] EvenNumbers = new int[4];
+        //Console.WriteLine(i);
 
-            //EvenNumbers[0] = 0;
-            //EvenNumbers[1] = 2;
-            //EvenNumbers[2] = 4;
-            //EvenNumbers[3] = 6;
+        //string number = "100";
 
-            //Console.WriteLine(EvenNumbers);
+        //int result = 0;
 
-            //Console.Write("Please enter a number: ");
-            //int userNumber = int.Parse(Console.ReadLine());
+        //bool isConversionSuccessful = int.TryParse(number, out result);
 
-            //if (userNumber == 0)
-            //{
-            //    Console.WriteLine("Hello number is 0");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Hello number is not 0");
-            //}
-            int TotalCoffeeCost = 0;
+        //if (isConversionSuccessful)
+        //{
+        //    Console.WriteLine(result);
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Cannot Convert the string into an array");
+        //}
 
-            Start:
-            Console.Write("1. Small, 2. Medium, 3. Large: ");
-            int userChoice = int.Parse(Console.ReadLine());
+        //Console.WriteLine(result);  
 
-            switch (userChoice)
+        //int[] EvenNumbers = new int[4];
+
+        //EvenNumbers[0] = 0;
+        //EvenNumbers[1] = 2;
+        //EvenNumbers[2] = 4;
+        //EvenNumbers[3] = 6;
+
+        //Console.WriteLine(EvenNumbers);
+
+        //Console.Write("Please enter a number: ");
+        //int userNumber = int.Parse(Console.ReadLine());
+
+        //if (userNumber == 0)
+        //{
+        //    Console.WriteLine("Hello number is 0");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Hello number is not 0");
+        //}
+
+        int TotalCoffeeCost = 0;
+        string userDecision = "";
+
+            do
             {
-                case 1:
-                    
-                case 2:
-                    
-                case 3:
-                    TotalCoffeeCost += userChoice;
-                    break;
-                default:
-                    Console.WriteLine("Please Choose Number between number 1 and 3");
-                    goto Start;
-            }
+                int userChoice = 0;
+                do
+                {
+                    Console.WriteLine("1. Small, 2. Medium, 3. Large: ");
+                    userChoice = int.Parse(Console.ReadLine());
 
-            Ask:
-            Console.Write("Do you want to buy another coffee? Yes or No: ");
+                    if(userChoice != 1 && userChoice != 2 && userChoice != 3)
+                    {
+                        Console.WriteLine("Please Choose between 1 2 3 ");
+                    } else
+                    {
+                        TotalCoffeeCost += userChoice;
+                    }
+                } while (userChoice != 1 && userChoice != 2 && userChoice != 3);
+                
+                do
+                {
+                    Console.Write("Do you want to buy another coffee? Yes or No: ");
 
-            string userDecision = Console.ReadLine();
+                    userDecision = Console.ReadLine().ToLower();
 
-            switch (userDecision.ToLower())
-            {
-                case "yes":
-                    goto Start;
-                case "no":
-                    break;
-                default:
-                    Console.WriteLine("Your Choice is invalid...Please try Again..");
-                    goto Ask;
-            }
+                    if (userDecision != "yes" && userDecision != "no")
+                    {
+                        Console.WriteLine("Your Choice is invalid...Please try Again..");
+                    }
+                } while (userDecision != "yes" && userDecision != "no");
+
+            } while (userDecision != "no");
+
+
 
             Console.WriteLine("Your TotalCoffeeCost: {0}", TotalCoffeeCost);
 
+            //int Start = 0;
+
+            //while(Start <= userTarget)
+            //{
+            //    Console.Write(Start + " ");
+            //    Start += 2;
+            //}
+            //string UserChoice = "";
+            //do
+            //{
+            //    Console.Write("Please enter your target?  ");
+            //    int UserTarget = int.Parse(Console.ReadLine());
+
+            //    int Start = 0;
+
+            //    while (Start <= UserTarget)
+            //    {
+            //        Console.Write(Start + " ");
+            //        Start += 2;
+            //    }
+
+                
+            //    do
+            //    {
+            //        Console.Write("Do you want to Continue? ");
+            //        UserChoice = Console.ReadLine().ToLower();
+                    
+            //        if (UserChoice != "yes" && UserChoice != "no")
+            //        {
+            //            Console.WriteLine("Please Choose between \"Yes\" or \"No\"");
+            //        }
+            //    } while (UserChoice != "yes" && UserChoice != "no");
+            //} while (UserChoice != "no");
+            
+            
         }
-        
     }
 }
