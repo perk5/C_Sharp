@@ -6,43 +6,100 @@ using PATB = ProjectA.TeamB;
 namespace ConsoleApp1
 {
 
-    class Customer
-    {
-        string _firstName;
-        string _lastName;
+    //class Customer
+    //{
+    //    string _firstName;
+    //    string _lastName;
 
        
 
-        public Customer(string FirstName, string LastName)
+    //    public Customer(string FirstName, string LastName)
+    //    {
+    //        this._firstName = FirstName;
+    //        this._lastName = LastName;  
+    //    }
+
+    //    public Customer() : this("No firstName", "lastName provided")
+    //    {
+
+    //    }
+
+    //    public void PrintFullName()
+    //    {
+    //        Console.WriteLine(this._firstName + " " + this._lastName);
+    //    }
+
+    //    ~Customer() 
+    //    {
+    //        //Clean Up Code
+    //    }
+
+    //}
+
+    class Circle
+    {
+        static float _PI;
+        int _Radius;
+
+        static Circle()
         {
-            this._firstName = FirstName;
-            this._lastName = LastName;  
+            Circle._PI = 3.141F;
         }
 
-        public Customer() : this("No firstName", "lastName provided")
+        public Circle(int Radius)
         {
-
+            this._Radius = Radius;
         }
+
+        public float CalculateArea()
+        {
+            return Circle._PI * (this._Radius * this._Radius);
+        }
+    }
+
+    public class Employee
+    {
+        public string FirstName;
+        public string LastName;
+        public string Email;
 
         public void PrintFullName()
         {
-            Console.WriteLine(this._firstName + " " + this._lastName);
+            Console.WriteLine(FirstName + " " + LastName);
         }
-
-        ~Customer() 
-        {
-            //Clean Up Code
-        }
-
     }
+
+    public class FullTimeEmployee : Employee
+    {
+        public float YearlySalary;
+    }
+
+    public class PartTimeEmployee : Employee
+    {
+        public float HourlySalary;
+    }
+
     public class Program
     {
 
         static void Main(string[] args)
         {
 
-            Customer C1 = new Customer("Prerak", "Shah");
-            C1.PrintFullName();
+            FullTimeEmployee F1 = new FullTimeEmployee();
+            F1.FirstName = "Prerak";
+            F1.LastName = "Shah";
+            F1.PrintFullName();
+            //Circle C1 = new Circle(5);
+            //float Area1 = C1.CalculateArea();
+            //Console.WriteLine("Area: {0}", Area1);
+
+
+            //Circle C2 = new Circle(6);
+            //float Area2 = C2.CalculateArea();
+            //Console.WriteLine("Area: {0}", Area2);
+
+            //Customer C1 = new Customer("Prerak", "Shah");
+            //C1.PrintFullName();
 
 
 
