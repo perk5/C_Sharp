@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Intrinsics.Arm;
 using PATA = ProjectA.TeamA;
 using PATB = ProjectA.TeamB;
 
@@ -36,59 +37,174 @@ namespace ConsoleApp1
 
     //}
 
-    class Circle
-    {
-        static float _PI;
-        int _Radius;
+    //class Circle
+    //{
+    //    static float _PI;
+    //    int _Radius;
 
-        static Circle()
+    //    static Circle()
+    //    {
+    //        Circle._PI = 3.141F;
+    //    }
+
+    //    public Circle(int Radius)
+    //    {
+    //        this._Radius = Radius;
+    //    }
+
+    //    public float CalculateArea()
+    //    {
+    //        return Circle._PI * (this._Radius * this._Radius);
+    //    }
+    //}
+
+    //public class Employee
+    //{
+    //    public string FirstName = "Fn";
+    //    public string LastName = "Ln";
+    //    public virtual void PrintFullName()
+    //    {
+    //        Console.WriteLine(FirstName + " " + LastName);
+    //    }
+    //}
+
+    //public class FullTimeEmployee : Employee
+    //{
+    //    public override void PrintFullName()
+    //    {
+    //        Console.WriteLine(FirstName + " " + LastName + " - Full Time");
+    //    }
+    //}
+
+    //public class PartTimeEmployee : Employee
+    //{
+    //    public override void PrintFullName()
+    //    {
+    //        Console.WriteLine(FirstName + " " + LastName + " - Part Time");
+    //    }
+
+    //}
+
+    //public class TemporaryEmployee : Employee
+    //{
+    //    public override void PrintFullName()
+    //    {
+    //        Console.WriteLine(FirstName + " " + LastName + " - Temporary");
+    //    }
+    //}
+   
+    public struct Student
+    {
+        private int _id;
+        private string _name;
+        private int PassMark = 35;
+
+        public int ID {
+            get { return this._id; }
+            set { this._id = value; }
+        }
+        public string Name { get => _name; set => _name = value; }
+
+
+        public Student(int id, string Name)
         {
-            Circle._PI = 3.141F;
+            this._id = id;
+            this._name = Name;
         }
 
-        public Circle(int Radius)
+        public void PrintDetails()
         {
-            this._Radius = Radius;
+            Console.WriteLine("ID = {0} && Name = {1}", this._id, this._name);
         }
 
-        public float CalculateArea()
-        {
-            return Circle._PI * (this._Radius * this._Radius);
-        }
-    }
 
-    public class Employee
-    {
-        public string FirstName;
-        public string LastName;
-        public string Email;
+        //public int GetPassMark()
+        //{
+        //    return this.PassMark;
+        //}
 
-        public void PrintFullName()
-        {
-            Console.WriteLine(FirstName + " " + LastName);
-        }
-    }
+        //public void SetName(string Name)
+        //{
+        //    if (string.IsNullOrEmpty(Name))
+        //    {
+        //        throw new Exception("Name is empty or Null");
+        //    }
+        //    this.Name = Name;
+        //}
 
-    public class FullTimeEmployee : Employee
-    {
-        public float YearlySalary;
-    }
+        //public string GetName()
+        //{
 
-    public class PartTimeEmployee : Employee
-    {
-        public float HourlySalary;
+        //    return string.IsNullOrEmpty(this.Name) ? "No Name" : this.Name;
+
+        //}
+
+        //public int Id
+        //{
+        //    set
+        //    {
+        //        if (value < 0)
+        //        {
+        //            throw new Exception("Id must me more than 0 and should not be negative");
+        //        }
+        //        this._id = value;
+        //    }
+        //    get
+        //    { 
+        //        return this._id;
+        //    }  
+        //}
+
+        //public int GetId()
+        //{
+        //    return this.Id;
+        //}
     }
 
     public class Program
     {
 
-        static void Main(string[] args)
+        static void Main()
         {
 
-            FullTimeEmployee F1 = new FullTimeEmployee();
-            F1.FirstName = "Prerak";
-            F1.LastName = "Shah";
-            F1.PrintFullName();
+
+
+            Student S1 = new Student(101, "Prerak");
+            S1.PrintDetails();
+            Student S2 = new Student();
+            S2.ID = 20;
+            S2.Name = "Prerak";
+            S2.PrintDetails();
+            Student S3 = new Student()
+            {
+                ID = 103,
+                Name = "ROb"
+            };
+            S3.PrintDetails();
+
+
+
+            //Employee[] employees = new Employee[4];
+
+            //employees[0] = new Employee();
+            //employees[1] = new FullTimeEmployee();
+            //employees[2] = new PartTimeEmployee();
+            //employees[3] = new TemporaryEmployee();
+
+            //foreach (Employee e in employees) 
+            //{
+            //    e.PrintFullName();
+            //}
+
+            //FullTimeEmployee F1 = new FullTimeEmployee();
+            //F1.FirstName = "Prerak";
+            //F1.LastName = "Shah";
+            //F1.PrintFullName();
+
+            //PartTimeEmployee P1 = new PartTimeEmployee();
+            //P1.FirstName = "PartTime";
+            //P1.LastName = "Employee";
+            //P1.PrintFullName();
             //Circle C1 = new Circle(5);
             //float Area1 = C1.CalculateArea();
             //Console.WriteLine("Area: {0}", Area1);
@@ -313,9 +429,7 @@ namespace ConsoleApp1
 
             //PATA.ClassA.Print();
             //PATB.ClassA.Print();
-
         }
-       
     }
 }
 
