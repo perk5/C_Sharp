@@ -1,51 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Runtime.ConstrainedExecution;
 
-class Program
+class ExceptionHandling
 {
     public static void Main()
     {
-        List<Employee> empList = new List<Employee>();
-        empList.Add(new Employee() { Id = 101, Name = "Mark", Salary = 20000, Experience = 5 });
-        empList.Add(new Employee() { Id = 102, Name = "Mary", Salary = 60000, Experience = 4 });
-        empList.Add(new Employee() { Id = 103, Name = "John", Salary = 10000, Experience = 1 });
-        empList.Add(new Employee() { Id = 104, Name = "Tony", Salary = 30000, Experience = 8 });
-
-        IsPromotable Ispromotable = new IsPromotable(Promote);
-
-        Employee.PromoteEmployee(empList, Ispromotable);
-    }
-    public static bool Promote(Employee emp)
-    {
-        if (emp.Experience >= 5)
+        StreamReader streamReader = null;
+        try
         {
-            return true;
+
+            streamReader = new StreamReader(@"D:\Sample file\Data.txt");
+            Console.WriteLine(streamReader.ReadToEnd());
+            
         }
-        else 
-        { 
-            return false; 
-        }
-    }
-    
-}
-
-delegate bool IsPromotable(Employee empl);
-
-class Employee
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Salary { get; set; }
-    public int Experience { get; set; }
-
-    public static void PromoteEmployee(List<Employee> employeeList, IsPromotable IsEligibleToPromote)
-    {
-        foreach (Employee employee in employeeList)
+        catch(FileNotFoundException ex)
         {
-            if(IsEligibleToPromote(employee))
+            Console.WriteLine(ex.Message);
+            Console.WriteLine();
+            Console.WriteLine();
+            //Console.WriteLine(ex.StackTrace);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            if (streamReader != null)
             {
-                Console.WriteLine(employee.Name + " Promoted");
+                streamReader.Close();
             }
+            
+            Console.WriteLine("Finally Called");
         }
+
     }
 }
