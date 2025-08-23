@@ -1,93 +1,51 @@
 ﻿using System;
-//interface ICustomer1
-//{
-//    void Print();   
-//}
+using System.Collections.Generic;
 
-//interface ICustomer2
-//{
-//    void I2Method();
-//}
-
-//public class Customer : ICustomer2
-//{
-//    public void Print()
-//    {
-//        Console.WriteLine("How Are you");
-//    }
-//    public void I2Method()
-//    {
-//        Console.WriteLine("I2");
-//    }
-//}
-
-//interface I1
-//{
-//    void InterfaceMethod();
-//}
-//interface I2
-//{
-//    void InterfaceMethod();
-//}
-
-public abstract class Customer
+class Program
 {
-    public abstract void Print();
+    public static void Main()
+    {
+        List<Employee> empList = new List<Employee>();
+        empList.Add(new Employee() { Id = 101, Name = "Mark", Salary = 20000, Experience = 5 });
+        empList.Add(new Employee() { Id = 102, Name = "Mary", Salary = 60000, Experience = 4 });
+        empList.Add(new Employee() { Id = 103, Name = "John", Salary = 10000, Experience = 1 });
+        empList.Add(new Employee() { Id = 104, Name = "Tony", Salary = 30000, Experience = 8 });
+
+        IsPromotable Ispromotable = new IsPromotable(Promote);
+
+        Employee.PromoteEmployee(empList, Ispromotable);
+    }
+    public static bool Promote(Employee emp)
+    {
+        if (emp.Experience >= 5)
+        {
+            return true;
+        }
+        else 
+        { 
+            return false; 
+        }
+    }
+    
 }
 
-public abstract class Program : Customer
+delegate bool IsPromotable(Employee empl);
+
+class Employee
 {
-    //void I1.InterfaceMethod()
-    //{
-    //    Console.WriteLine("I1");
-    //}
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Salary { get; set; }
+    public int Experience { get; set; }
 
-    //void I2.InterfaceMethod()
-    //{
-    //    Console.WriteLine("I2");
-   
-    static void Main()
+    public static void PromoteEmployee(List<Employee> employeeList, IsPromotable IsEligibleToPromote)
     {
-        //Program P1 = new Program();
-        //((I1)P1).InterfaceMethod();
-
-       //Customer C = new Program();
-       //C.Print();
+        foreach (Employee employee in employeeList)
+        {
+            if(IsEligibleToPromote(employee))
+            {
+                Console.WriteLine(employee.Name + " Promoted");
+            }
+        }
     }
 }
-
-
-
-
-
-//public static void ParamsMethod(params int[] numbers)
-//{
-//    Console.WriteLine(" There are {0} elements ", numbers.Length);
-
-//    foreach (int number in numbers)
-//    {
-//        Console.WriteLine(number);
-//    }
-//}
-
-//public static void Addition(int Fn, int Sn, out int sum, out int Product)
-//{
-//    sum =  Fn + Sn;
-//    Product = Fn * Sn;
-//}
-
-//public int Add(int Fn, int Sn)
-//{
-//    return Fn + Sn;
-//}
-
-//public static void EvenNumbers(int target)
-//{
-//    int start = 0;
-
-//    while(start <= target)
-//    {
-//        Console.WriteLine(start);
-//        start += 2;
-//    }
-//}
