@@ -1,39 +1,58 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.ConstrainedExecution;
 
-class ExceptionHandling
+
+class InnerException
 {
     public static void Main()
     {
-        StreamReader streamReader = null;
+
+        Divide(); 
+    }
+
+    public static void Divide()
+    {
         try
         {
-
-            streamReader = new StreamReader(@"D:\Sample file\Data.txt");
-            Console.WriteLine(streamReader.ReadToEnd());
-            
-        }
-        catch(FileNotFoundException ex)
-        {
-            Console.WriteLine(ex.Message);
-            Console.WriteLine();
-            Console.WriteLine();
-            //Console.WriteLine(ex.StackTrace);
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        finally
-        {
-            if (streamReader != null)
+            try
             {
-                streamReader.Close();
+                Console.Write("Enter the first number: ");
+                int firstNumber = int.Parse(Console.ReadLine());
+                Console.Write("Enter the second number: ");
+                int secondNumber = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Result: {0}", firstNumber / secondNumber);
+            }
+            catch (Exception ex)
+            {
+                string filePath = @"D:\Sample file\Data111.txt";
+
+                if (File.Exists(filePath))
+                {
+                    StreamWriter sw = new StreamWriter(filePath);
+                    sw.Write(ex.GetType().Name);
+                    sw.Close();
+                    Console.WriteLine("There is a problem, Please try later");
+
+                }
+                else
+                {
+                    throw new FileNotFoundException(filePath, " Not Present");
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine("Current Exception = {0}", exception.GetType().Name);
+
+            if(exception.InnerException != null)
+            {
+                Console.WriteLine("Inner Exception = {0}", exception.InnerException.GetType().Name);
             }
             
-            Console.WriteLine("Finally Called");
         }
-
+        
+        
     }
 }
+    
