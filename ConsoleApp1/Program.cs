@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 
 public class ExceptionHandlingAbuse
@@ -8,30 +9,45 @@ public class ExceptionHandlingAbuse
         try
         {
             Console.WriteLine("Please enter the Numerator: ");
-            int Numerator = int.Parse(Console.ReadLine());
+            int Numerator;
+            bool isNumeratorConvertedSuccessful = Int32.TryParse(Console.ReadLine(), out Numerator);
 
-            Console.WriteLine("Please enter Denominator: ");
-            int Denominator = int.Parse(Console.ReadLine());
+            if (isNumeratorConvertedSuccessful)
+            {
+                Console.WriteLine("Please enter Denominator: ");
 
-            int Result = Numerator / Denominator;
+                int Denominator;
 
-            Console.WriteLine("Result {0}", Result);
-        }
-        catch (FormatException)
-        {
-            Console.WriteLine("Please enter an number");
-        }
-        catch (OverflowException)
-        {
-            Console.WriteLine("Only numbers between {0} && {1} are allowed",Int32.MinValue, Int32.MaxValue);
-        }
-        catch (DivideByZeroException)
-        {
-            Console.WriteLine("Denominator cannot be zero");
+                bool isDenominatorConvertedSuccessful = Int32.TryParse(Console.ReadLine(), out Denominator);
+
+                if (isDenominatorConvertedSuccessful && Denominator != 0)
+                {
+                    int Result = Numerator / Denominator;
+
+                    Console.WriteLine("Result {0}", Result);
+                }
+                else
+                {
+                    if (Denominator == 0)
+                    {
+                        Console.WriteLine("Denominator cannot be zero");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Denominator should a valid number {0} && {1} are allowed", Int32.MinValue, Int32.MaxValue);
+                    }      
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine("Numerator should a valid number {0} && {1} are allowed", Int32.MinValue, Int32.MaxValue);
+            }
         }
         catch(Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.Message);   
         }
     }
 }
