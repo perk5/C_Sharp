@@ -1,34 +1,37 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
 
-class CustomExceptionsDemo
+public class ExceptionHandlingAbuse
 {
     public static void Main()
     {
-        throw new UserAlreadyLoggedInException("User is logged in");  
-    }
-}
+        try
+        {
+            Console.WriteLine("Please enter the Numerator: ");
+            int Numerator = int.Parse(Console.ReadLine());
 
-public class UserAlreadyLoggedInException : Exception
-{
-    public UserAlreadyLoggedInException() : base()
-    {
+            Console.WriteLine("Please enter Denominator: ");
+            int Denominator = int.Parse(Console.ReadLine());
 
-    }
+            int Result = Numerator / Denominator;
 
-    public UserAlreadyLoggedInException(string message) : base(message)
-    {
-          
-    }
-
-    public UserAlreadyLoggedInException(string message, Exception innerException) : base(message, innerException)
-    {
-
-    }
-
-    public UserAlreadyLoggedInException(SerializationInfo info, StreamingContext context) : base(info, context)
-    {
-
+            Console.WriteLine("Result {0}", Result);
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Please enter an number");
+        }
+        catch (OverflowException)
+        {
+            Console.WriteLine("Only numbers between {0} && {1} are allowed",Int32.MinValue, Int32.MaxValue);
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Denominator cannot be zero");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
