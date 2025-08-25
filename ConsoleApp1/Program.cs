@@ -1,53 +1,42 @@
 ﻿using System;
-using System.Data;
-using System.IO;
 
-public class ExceptionHandlingAbuse
+public class Enums
 {
     public static void Main()
-    {
-        try
-        {
-            Console.WriteLine("Please enter the Numerator: ");
-            int Numerator;
-            bool isNumeratorConvertedSuccessful = Int32.TryParse(Console.ReadLine(), out Numerator);
+    { 
+        Gender gender = (Gender)Season.Monsoon;
+        int Number = (int)Gender.Unknown;
+        Console.WriteLine(gender);
+        Console.WriteLine(Number);
 
-            if (isNumeratorConvertedSuccessful)
-            {
-                Console.WriteLine("Please enter Denominator: ");
+        //short[] values = (short[])Enum.GetValues(typeof(Gender));
 
-                int Denominator;
+        //foreach(short i in values)
+        //{
+        //    Console.WriteLine(i);
+        //}
 
-                bool isDenominatorConvertedSuccessful = Int32.TryParse(Console.ReadLine(), out Denominator);
+        //string[] Names = Enum.GetNames(typeof(Gender));
 
-                if (isDenominatorConvertedSuccessful && Denominator != 0)
-                {
-                    int Result = Numerator / Denominator;
-
-                    Console.WriteLine("Result {0}", Result);
-                }
-                else
-                {
-                    if (Denominator == 0)
-                    {
-                        Console.WriteLine("Denominator cannot be zero");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Denominator should a valid number {0} && {1} are allowed", Int32.MinValue, Int32.MaxValue);
-                    }      
-                }
-
-
-            }
-            else
-            {
-                Console.WriteLine("Numerator should a valid number {0} && {1} are allowed", Int32.MinValue, Int32.MaxValue);
-            }
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.Message);   
-        }
+        //foreach(string s in Names)
+        //{
+        //    Console.WriteLine(s);
+        //}
     }
+    
 }
+
+public enum Gender
+{
+    Unknown = 1,
+    Male = 2,
+    Female = 3
+}
+
+public enum Season
+{
+    Winter = 0,
+    Summer,
+    Monsoon
+}
+
