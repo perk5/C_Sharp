@@ -2,7 +2,7 @@
 
 namespace Assemble1
 {
-    class AssemblyOneClass1
+    public class AssemblyOneClass1
     {
         public void Print()
         {
