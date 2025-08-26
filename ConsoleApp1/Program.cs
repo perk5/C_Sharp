@@ -1,42 +1,28 @@
 ﻿using System;
 
-public class Enums
+
+public class Customer
 {
-    public static void Main()
-    { 
-        Gender gender = (Gender)Season.Monsoon;
-        int Number = (int)Gender.Unknown;
-        Console.WriteLine(gender);
-        Console.WriteLine(Number);
+    protected int Id;
+}
 
-        //short[] values = (short[])Enum.GetValues(typeof(Gender));
+public class RetailCustomer : Customer
+{
 
-        //foreach(short i in values)
-        //{
-        //    Console.WriteLine(i);
-        //}
-
-        //string[] Names = Enum.GetNames(typeof(Gender));
-
-        //foreach(string s in Names)
-        //{
-        //    Console.WriteLine(s);
-        //}
+    public void Information()
+    {
+        RetailCustomer RC = new RetailCustomer();   
+        RC.Id = Id;
     }
+    
+
     
 }
 
-public enum Gender
+public class Program
 {
-    Unknown = 1,
-    Male = 2,
-    Female = 3
-}
+    public static void Main()
+    {
 
-public enum Season
-{
-    Winter = 0,
-    Summer,
-    Monsoon
+    }
 }
-
