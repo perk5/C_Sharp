@@ -1,54 +1,40 @@
 ﻿using System;
 using System.Reflection;
 
+
 namespace Prerak
 {
     public class MainClass
     {
         private static void Main()
-        {
-            Type T = Type.GetType("Prerak.Customer");
-            Console.WriteLine(T.FullName);
-            Console.WriteLine(T.Name);
-            Console.WriteLine(T.Namespace);
-            Console.WriteLine("");
-            Console.WriteLine("Properties");
+        {   
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            Type customerType = executingAssembly.GetType("Prerak.Customer");
 
-            PropertyInfo[] p1 = T.GetProperties();
+            object customerInstance = Activator.CreateInstance(customerType);
 
-            foreach (PropertyInfo p in p1)
-            {
-                Console.WriteLine(p.PropertyType.Name + " " + p.Name);
-            }
+            MethodInfo getFullNameMethod = customerType.GetMethod("GetFullName");
+
+            string[] parameters = new string[2];
+
+            parameters[0] = "Prerak";
+            parameters[1] = "Shah";
+
+            string fullName = (string)getFullNameMethod.Invoke(customerInstance, parameters);
+
+            Console.WriteLine(fullName);
+
+            //Customer C1 = new Customer();
+            //string fullName = C1.GetFullName("Prerak", "Shah");
+            //Console.WriteLine(fullName);
         }
     }
 
-
     public class Customer
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public Customer(int Id, string Name)
+        public string GetFullName(string FirstName, string LastName)
         {
-            this.Id = Id;
-            this.Name = Name;
-        }
-
-        public Customer()
-        {
-            this.Id = -1;
-            this.Name = string.Empty;
-        }
-
-        public void PrintID()
-        {
-            Console.WriteLine("ID = {0}", this.Id);
-        }
-
-        public void PrintName()
-        {
-            Console.WriteLine("ID = {0}", this.Name);
+            return FirstName + " " + LastName;
         }
     }
 }
