@@ -6,24 +6,25 @@ namespace Prerak
     {
         private static void Main()
         {
-            bool Equal = Calculator.AreEqual<string>("", "");
+            Customer C1 = new Customer();
 
-            if (Equal)
-            {
-                Console.WriteLine("They are equal");
-            }
-            else
-            {
-                Console.WriteLine("Not equal");
-            }
+            C1.FirstName = "Prerak";
+            C1.LastName = "Shah";
+
+            Console.WriteLine(C1.ToString());
         }
     }
 
-    public class Calculator
+    public class Customer
     {
-        public static bool AreEqual<T>(T Value1, T Value2)
+        
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public override string ToString()
         {
-            return Value1.Equals(Value2);
+            return this.FirstName + " " + this.LastName;  
         }
+        
     }
 }
