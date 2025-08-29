@@ -1,24 +1,27 @@
 ﻿using System;
+using System.Text;
+
 
 namespace Prerak
 {
     public class MainClass
     {
-        private static void Main()
+        public static void Main()
         {
-            Customer C1 = null;
-            string str = Convert.ToString(C1);
-            //string str = C1.ToString(); -> Throws a nullReferenceError
-            Console.WriteLine(str); 
+            //string Method
+
+
+            //string userString = "C#";
+            //userString += " video";
+
+
+            //StringBuilder Method
+
+            StringBuilder userString = new StringBuilder("C#");
+            userString.Append(" video");
+
+
+            Console.WriteLine(userString.ToString());   
         }
     }
-
-    public class Customer
-    {
-        public string Name { get; set; }
-
-          
-    }
-
-    
 }
