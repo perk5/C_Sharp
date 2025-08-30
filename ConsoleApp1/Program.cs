@@ -1,27 +1,13 @@
 ﻿using System;
-using System.Text;
 
-
-namespace Prerak
+namespace PartialMethodDemo
 {
-    public class MainClass
+    public class Program
     {
-        public static void Main()
+        static void Main()
         {
-            //string Method
-
-
-            //string userString = "C#";
-            //userString += " video";
-
-
-            //StringBuilder Method
-
-            StringBuilder userString = new StringBuilder("C#");
-            userString.Append(" video");
-
-
-            Console.WriteLine(userString.ToString());   
+            SamplePartialClass SPC1 = new SamplePartialClass();
+            SPC1.PublicMethod();
         }
-    }
+    } 
 }
