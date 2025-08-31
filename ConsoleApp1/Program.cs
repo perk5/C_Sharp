@@ -1,32 +1,28 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
-namespace ConsoleApp1
+namespace Demo
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
-           
-            Program.AddNumbers(1, 2);
+            Program.AddNumbers(1 , 2);
         }
 
-        public static void AddNumbers(int firstNumber, int secondNumber)
-        {
-            AddNumbers(firstNumber, secondNumber, null);
-        }
-
-        public static void AddNumbers(int firstNumber, int secondNumber, int[] restOfNumbers)
+        public static void AddNumbers(int firstNumber, int secondNumber, [Optional] int[] restOfNumbers)
         {
             int result = firstNumber + secondNumber;
-            if(restOfNumbers != null)
+
+            if (restOfNumbers != null)
             {
                 foreach (int i in restOfNumbers)
                 {
-                    result += i;    
+                    result += i;
                 }
             }
 
-            Console.WriteLine(result);  
+            Console.WriteLine(result);
         }
     }
 }
