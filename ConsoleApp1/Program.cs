@@ -27,53 +27,22 @@ namespace Demo
                 Salary = 400
             };
 
-            // Converting Arrays to dictionary....
 
-            Customer[] customer = new Customer[3];
-            customer[0] = customer1;
-            customer[1] = customer2;
-            customer[2] = customer3;
-
-            Dictionary<int, Customer> dict = customer.ToDictionary(cust => cust.ID, cust => cust);
+            List<Customer> customers = new List<Customer>(2);
+            customers.Add(customer1);
+            customers.Add(customer2);
+            customers.Add(customer3);
+            customers.Insert(0, customer3);
 
 
-            foreach (KeyValuePair <int, Customer> kvp in dict)
-            {
-                Console.WriteLine(kvp.Key);
-            }
+            Console.WriteLine(customers.IndexOf(customer3, 1));
 
+            //foreach (Customer customer in customers)
+            //{
+            //    Console.WriteLine(customer.ID);
+            //}
             
 
-            // Create Dictionary
-
-            //Dictionary<int, Customer> dictionaryCustomers = new Dictionary<int, Customer>();
-            //dictionaryCustomers.Add(customer1.ID, customer1);
-            //dictionaryCustomers.Add(customer2.ID, customer2);
-
-
-
-
-
-
-            //Method TryGetValue Method.....
-
-            //Customer cust;
-            //if (dictionaryCustomers.TryGetValue(4, out cust))
-            //{
-            //    Console.WriteLine(cust.Name);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Not Found...");
-            //}
-
-
-            // Count Extension Method......
-            //int count = dictionaryCustomers.Count(kvp => kvp.Value.Salary >= 300);
-            //Console.WriteLine(count);
-
-            //// Remove Method......
-            //dictionaryCustomers.Remove(35);
 
         }
     }
@@ -83,7 +52,10 @@ namespace Demo
         public  int ID { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
-
-
     }
+
+    //public class SavingsCustomer : Customer
+    //{
+
+    //}
 }
