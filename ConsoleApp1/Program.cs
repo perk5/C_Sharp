@@ -12,28 +12,37 @@ namespace Demo
             {
                 ID = 1,
                 Name = "Test1",
-                Salary = 200
+                Salary = 200,
+                Type = "CorporateCustomer"
             };
             Customer customer2 = new Customer()
             {
                 ID = 2,
                 Name = "Test2",
-                Salary = 300
+                Salary = 300,
+                Type = "CorporateCustomer"
             };
             Customer customer3 = new Customer()
             {
                 ID = 3,
                 Name = "Test3",
-                Salary = 400
+                Salary = 800,
+                Type = "RetailCustomer"
             };
 
-            Customer[] customerArr = new Customer[3];
+            List<Customer> listCustomer = new List<Customer>();
+            listCustomer.Add(customer1);
+            listCustomer.Add(customer2);
 
-            customerArr[0] = customer1;
-            customerArr[1] = customer2;
-            customerArr[2] = customer3;
+            List<Customer> listCorporateCustomers = new List<Customer>();
+            listCorporateCustomers.Add(customer3);
 
-            List<Customer> listCustomers = customerArr.ToList();
+            listCustomer.AddRange(listCorporateCustomers);
+
+            foreach (Customer c in listCustomer)
+            {
+                Console.WriteLine(c.Name);
+            }
 
 
             //List<Customer> customers = new List<Customer>(2);
@@ -96,6 +105,8 @@ namespace Demo
         public  int ID { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
+
+        public string Type { get; set; }
     }
 
     //public class SavingsCustomer : Customer
