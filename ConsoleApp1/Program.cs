@@ -27,21 +27,65 @@ namespace Demo
                 Salary = 400
             };
 
+            Customer[] customerArr = new Customer[3];
 
-            List<Customer> customers = new List<Customer>(2);
-            customers.Add(customer1);
-            customers.Add(customer2);
-            customers.Add(customer3);
-            customers.Insert(0, customer3);
+            customerArr[0] = customer1;
+            customerArr[1] = customer2;
+            customerArr[2] = customer3;
+
+            List<Customer> listCustomers = customerArr.ToList();
 
 
-            Console.WriteLine(customers.IndexOf(customer3, 1));
+            //List<Customer> customers = new List<Customer>(2);
+            //customers.Add(customer1);
+            //customers.Add(customer2);
+            //customers.Add(customer3);
+
+            //FindAll Function......
+            //List<Customer> cust = customers.FindAll(cust => cust.Salary > 200);
+
+            //foreach (Customer c in cust)
+            //{
+            //    Console.WriteLine(c.Name);
+            //}
+
+
+            ////FindIndex / FindLastIndex  Function......
+            //int cust = customers.FindLastIndex(cust => cust.Salary == 300);
+
+            //Console.WriteLine(cust);    
+
+
+            //Contains Function......
+
+            //if (customers.Contains(customer3))
+            //{
+            //    Console.WriteLine("Customer exists");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Customer Do not exist");
+            //}
+
+            //Exists function.......
+
+            //if (customers.Exists(cust => cust.Name.StartsWith("T")))
+            //{
+            //    Console.WriteLine("Customer exists");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Customer Do not exist");
+            //}
+
+
+
 
             //foreach (Customer customer in customers)
             //{
             //    Console.WriteLine(customer.ID);
             //}
-            
+
 
 
         }
