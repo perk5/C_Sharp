@@ -27,21 +27,55 @@ namespace Demo
                 Salary = 400
             };
 
-            Dictionary<int, Customer> dictionaryCustomers = new Dictionary<int, Customer>();
-            dictionaryCustomers.Add(customer1.ID, customer1);
-            dictionaryCustomers.Add(customer2.ID, customer2);
+            // Converting Arrays to dictionary....
 
-            Customer cust2 = dictionaryCustomers[2];
+            Customer[] customer = new Customer[3];
+            customer[0] = customer1;
+            customer[1] = customer2;
+            customer[2] = customer3;
 
-            //Console.WriteLine("ID = {0}, Name = {1}, Salary = {2}", cust2.ID, cust2.Name, cust2.Salary);
+            Dictionary<int, Customer> dict = customer.ToDictionary(cust => cust.ID, cust => cust);
 
-            foreach (KeyValuePair<int, Customer> customerKeyValuePair in dictionaryCustomers )
+
+            foreach (KeyValuePair <int, Customer> kvp in dict)
             {
-                //Console.WriteLine("ID = {0}", customerKeyValuePair.Key);
-                Customer Cust = customerKeyValuePair.Value;
-                Console.WriteLine(Cust.Name);
+                Console.WriteLine(kvp.Key);
             }
-        } 
+
+            
+
+            // Create Dictionary
+
+            //Dictionary<int, Customer> dictionaryCustomers = new Dictionary<int, Customer>();
+            //dictionaryCustomers.Add(customer1.ID, customer1);
+            //dictionaryCustomers.Add(customer2.ID, customer2);
+
+
+
+
+
+
+            //Method TryGetValue Method.....
+
+            //Customer cust;
+            //if (dictionaryCustomers.TryGetValue(4, out cust))
+            //{
+            //    Console.WriteLine(cust.Name);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not Found...");
+            //}
+
+
+            // Count Extension Method......
+            //int count = dictionaryCustomers.Count(kvp => kvp.Value.Salary >= 300);
+            //Console.WriteLine(count);
+
+            //// Remove Method......
+            //dictionaryCustomers.Remove(35);
+
+        }
     }
 
     public class Customer
