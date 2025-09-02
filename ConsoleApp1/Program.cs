@@ -21,13 +21,20 @@ namespace Prerak
             queueCustomers.Enqueue(country4);
             queueCustomers.Enqueue(country5);
 
+
+            //FIFO (First In First Out)
+            //Remove and just Return
             //Country c1 = queueCustomers.Dequeue();
             //Console.WriteLine(c1.Name);
-            foreach (Country c in queueCustomers)
-            {
-                queueCustomers.Dequeue();
-                Console.WriteLine(queueCustomers.Count());
 
+            //Doesnot Remove and just Return
+            Country c1 = queueCustomers.Peek();
+            Console.WriteLine(c1.Name);
+
+
+            foreach (Country c in queueCustomers)
+            {  
+                Console.WriteLine(queueCustomers.Count());
             }
 
         }
