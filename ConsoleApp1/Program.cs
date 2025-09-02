@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Demo
 {
@@ -29,74 +30,33 @@ namespace Demo
                 Type = "RetailCustomer"
             };
 
-            List<Customer> listCustomer = new List<Customer>();
+            List<Customer> listCustomer = new List<Customer>(100);
             listCustomer.Add(customer1);
             listCustomer.Add(customer2);
             listCustomer.Add(customer3);
 
-            //Console.WriteLine("Before Sorting...");
-            //foreach (Customer customer in listCustomer) 
-            //{
-            //    Console.WriteLine(customer.Salary);
-            //}
-
-            //Console.WriteLine("After Sorting");
-
-            //listCustomer.Sort();
-
-            //listCustomer.Reverse();
-
-            //foreach (Customer customer in listCustomer) 
-            //{
-            //    Console.WriteLine(customer.Salary);
-            //}
+            //Capacity Triming method
+            Console.WriteLine(listCustomer.Capacity);
+            listCustomer.TrimExcess();
+            Console.WriteLine(listCustomer.Capacity);
 
 
-            // Second Method passing a second class object to a sort function
+            //AsReadOnly();
 
-            //SortByName sortByName = new SortByName();
-            //listCustomer.Sort(sortByName);
+            //ReadOnlyCollection<Customer> readOnly= listCustomer.AsReadOnly();
+            
 
-            //foreach (Customer customer in listCustomer)
-            //{
-            //    Console.WriteLine(customer.Name);
-            //}
+            //TrueForAll Method
 
-            //Third Method
+            //bool result = listCustomer.TrueForAll(x => x.Salary > 200);
+            //Console.WriteLine(result);
 
-            //Comparison<Customer> customerCompairer = new Comparison<Customer> (CompareCustomer);
-
-
-            //using lamda expression (x, y) => return x.ID.CompareTo(y.ID)
-
-            listCustomer.Sort(delegate(Customer x, Customer y)
-            {
-                return x.ID.CompareTo(y.ID);
-            });
-            foreach (Customer customer in listCustomer)
-            {
-                Console.WriteLine(customer.ID);
-            }
-
+            // 
         }
 
-        //private static int CompareCustomer(Customer x, Customer y)
-        //{
-        //    return x.ID.CompareTo(y.ID);
-        //}
+        
     }
-
-    //Sorting with our own Classes - 2. Method IComparer
-    //public class SortByName : IComparer<Customer>
-    //{
-    //    public int Compare(Customer x, Customer y) 
-    //    {
-    //        return x.Name.CompareTo(y.Name);
-    //    }
-    //}
-
-
-    //Sorting logic within the class - 1 method....
+   
     public class Customer : IComparable<Customer>
     {
         public  int ID { get; set; }
