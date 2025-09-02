@@ -1,89 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace Demo
+namespace Prerak
 {
-    public class Program
+    public class MainClass
     {
         public static void Main()
         {
-            Customer customer1 = new Customer()
+            Country country1 = new Country() { Name = "India", Code = "IND", Capital = "Delhi" };
+            Country country2 = new Country() { Name = "Australia", Code = "AUS", Capital = "Canberra" };
+            Country country3 = new Country() { Name = "Afghanistan", Code = "AFG", Capital = "Kabul" };
+            Country country4 = new Country() { Name = "Iran", Code = "IRN", Capital = "Tehran" };
+            Country country5 = new Country() { Name = "Pakistan", Code = "PAK", Capital = "Islamabad" };
+
+            Dictionary<string, Country> Countries = new Dictionary<string, Country>();
+            Countries.Add(country1.Code, country1);
+            Countries.Add(country2.Code, country2);
+            Countries.Add(country3.Code, country3);
+            Countries.Add(country4.Code, country4);
+            Countries.Add(country5.Code, country5);
+                 
+            string answer;
+            do
             {
-                ID = 5,
-                Name = "Cest1",
-                Salary = 200,
-                Type = "CorporateCustomer"
-            };
-            Customer customer2 = new Customer()
-            {
-                ID = 2,
-                Name = "Dast2",
-                Salary = 1900,
-                Type = "CorporateCustomer"
-            };
-            Customer customer3 = new Customer()
-            {
-                ID = 3,
-                Name = "Aorth3",
-                Salary = 800,
-                Type = "RetailCustomer"
-            };
-
-            List<Customer> listCustomer = new List<Customer>(100);
-            listCustomer.Add(customer1);
-            listCustomer.Add(customer2);
-            listCustomer.Add(customer3);
-
-            //Capacity Triming method
-            Console.WriteLine(listCustomer.Capacity);
-            listCustomer.TrimExcess();
-            Console.WriteLine(listCustomer.Capacity);
+                Console.WriteLine("Please enter country code: ");
+                string Code = Console.ReadLine().ToUpper();
 
 
-            //AsReadOnly();
+                Country c = Countries.ContainsKey(Code) ? Countries[Code] :  null;
 
-            //ReadOnlyCollection<Customer> readOnly= listCustomer.AsReadOnly();
-            
+                if (c != null)
+                {
+                    Console.WriteLine(c.Name);
+                }
+                else
+                {
+                    Console.WriteLine("We were not able to find the name of the country..");
+                }
+                Console.WriteLine("");
 
-            //TrueForAll Method
+                do
+                {
+                    Console.Write("Do you want to continue Yes or No: ");
+                    answer = Console.ReadLine().ToLower();
+                } while (answer != "no" && answer != "yes");
 
-            //bool result = listCustomer.TrueForAll(x => x.Salary > 200);
-            //Console.WriteLine(result);
 
-            // 
+
+                //foreach (Country C in countries)
+                //{
+                //    if (C.Code == Code)
+                //    {
+                //        Console.WriteLine("Country: " + C.Name);
+
+                //        answer = Console.ReadLine();
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //    Console.WriteLine("Do You want to continue Yes or No: ");
+                //}
+
+
+
+                } while (answer != "no");
+
+    
         }
-
-        
     }
-   
-    public class Customer : IComparable<Customer>
+     
+    public class Country
     {
-        public  int ID { get; set; }
         public string Name { get; set; }
-        public int Salary { get; set; }
-        public string Type { get; set; } 
-        public int CompareTo(Customer other)
-        {
-            //if(this.Salary > other.Salary)
-            //{
-            //    return 1;
-            //}
-            //else if ((this.Salary < other.Salary))
-            //{
-            //    return -1;
-            //}
-            //else
-            //{
-            //    return 0;
-            //}
-
-            return this.Salary.CompareTo(other.Salary);
-        }
+        public string Code { get; set; }   
+        public string Capital { get; set; }
     }
-
-    //public class SavingsCustomer : Customer
-    //{
-
-    //}
 }
