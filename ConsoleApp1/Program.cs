@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Demo
 {
     public class Program
@@ -10,22 +9,22 @@ namespace Demo
         {
             Customer customer1 = new Customer()
             {
-                ID = 1,
-                Name = "Test1",
+                ID = 5,
+                Name = "Cest1",
                 Salary = 200,
                 Type = "CorporateCustomer"
             };
             Customer customer2 = new Customer()
             {
                 ID = 2,
-                Name = "Test2",
-                Salary = 300,
+                Name = "Dast2",
+                Salary = 1900,
                 Type = "CorporateCustomer"
             };
             Customer customer3 = new Customer()
             {
                 ID = 3,
-                Name = "Test3",
+                Name = "Aorth3",
                 Salary = 800,
                 Type = "RetailCustomer"
             };
@@ -33,80 +32,94 @@ namespace Demo
             List<Customer> listCustomer = new List<Customer>();
             listCustomer.Add(customer1);
             listCustomer.Add(customer2);
+            listCustomer.Add(customer3);
 
-            List<Customer> listCorporateCustomers = new List<Customer>();
-            listCorporateCustomers.Add(customer3);
+            //Console.WriteLine("Before Sorting...");
+            //foreach (Customer customer in listCustomer) 
+            //{
+            //    Console.WriteLine(customer.Salary);
+            //}
 
-            listCustomer.AddRange(listCorporateCustomers);
+            //Console.WriteLine("After Sorting");
 
-            foreach (Customer c in listCustomer)
+            //listCustomer.Sort();
+
+            //listCustomer.Reverse();
+
+            //foreach (Customer customer in listCustomer) 
+            //{
+            //    Console.WriteLine(customer.Salary);
+            //}
+
+
+            // Second Method passing a second class object to a sort function
+
+            //SortByName sortByName = new SortByName();
+            //listCustomer.Sort(sortByName);
+
+            //foreach (Customer customer in listCustomer)
+            //{
+            //    Console.WriteLine(customer.Name);
+            //}
+
+            //Third Method
+
+            //Comparison<Customer> customerCompairer = new Comparison<Customer> (CompareCustomer);
+
+
+            //using lamda expression (x, y) => return x.ID.CompareTo(y.ID)
+
+            listCustomer.Sort(delegate(Customer x, Customer y)
             {
-                Console.WriteLine(c.Name);
+                return x.ID.CompareTo(y.ID);
+            });
+            foreach (Customer customer in listCustomer)
+            {
+                Console.WriteLine(customer.ID);
             }
 
-
-            //List<Customer> customers = new List<Customer>(2);
-            //customers.Add(customer1);
-            //customers.Add(customer2);
-            //customers.Add(customer3);
-
-            //FindAll Function......
-            //List<Customer> cust = customers.FindAll(cust => cust.Salary > 200);
-
-            //foreach (Customer c in cust)
-            //{
-            //    Console.WriteLine(c.Name);
-            //}
-
-
-            ////FindIndex / FindLastIndex  Function......
-            //int cust = customers.FindLastIndex(cust => cust.Salary == 300);
-
-            //Console.WriteLine(cust);    
-
-
-            //Contains Function......
-
-            //if (customers.Contains(customer3))
-            //{
-            //    Console.WriteLine("Customer exists");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Customer Do not exist");
-            //}
-
-            //Exists function.......
-
-            //if (customers.Exists(cust => cust.Name.StartsWith("T")))
-            //{
-            //    Console.WriteLine("Customer exists");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Customer Do not exist");
-            //}
-
-
-
-
-            //foreach (Customer customer in customers)
-            //{
-            //    Console.WriteLine(customer.ID);
-            //}
-
-
-
         }
+
+        //private static int CompareCustomer(Customer x, Customer y)
+        //{
+        //    return x.ID.CompareTo(y.ID);
+        //}
     }
 
-    public class Customer
+    //Sorting with our own Classes - 2. Method IComparer
+    //public class SortByName : IComparer<Customer>
+    //{
+    //    public int Compare(Customer x, Customer y) 
+    //    {
+    //        return x.Name.CompareTo(y.Name);
+    //    }
+    //}
+
+
+    //Sorting logic within the class - 1 method....
+    public class Customer : IComparable<Customer>
     {
         public  int ID { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
+        public string Type { get; set; } 
+        public int CompareTo(Customer other)
+        {
+            //if(this.Salary > other.Salary)
+            //{
+            //    return 1;
+            //}
+            //else if ((this.Salary < other.Salary))
+            //{
+            //    return -1;
+            //}
+            //else
+            //{
+            //    return 0;
+            //}
 
-        public string Type { get; set; }
+            return this.Salary.CompareTo(other.Salary);
+        }
     }
 
     //public class SavingsCustomer : Customer
