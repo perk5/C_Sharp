@@ -6,28 +6,34 @@ namespace ThreadStartDelegateExample
     {
         public static void Main()
         {
+
             Console.WriteLine("Please enter the target number");
-            string result = Console.ReadLine();
-            Number number = new Number();
-            ParameterizedThreadStart parameterizedThreadStart = new ParameterizedThreadStart(number.PrintNumbers);
-            Thread T1 = new Thread(parameterizedThreadStart);
-            T1.Start(result);
+            int target = int.Parse(Console.ReadLine());
+            Number number = new Number(target);
+
+            ////Optional
+            //ParameterizedThreadStart parameterizedThreadStart = new ParameterizedThreadStart(number.PrintNumbers);
+            //
+
+            Thread T1 = new Thread(number.PrintNumbers);
+            T1.Start();
         }
     }
 
     class Number
     {
-        public void PrintNumbers(object target)
+        int _target;
+
+        public Number(int target)
         {
-            int number = 0;
-            if(int.TryParse((string)target, out number))
+            this._target = target;
+        }
+        public void PrintNumbers()
+        {
+            for (int i = 1; i <= _target; i++)
             {
-                for (int i = 1; i <= number; i++)
-                {
-                    Console.WriteLine(i);
-                }
+                Console.WriteLine(i);
             }
-            
         }
     }
 }
