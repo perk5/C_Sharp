@@ -1,42 +1,30 @@
 ﻿using System;
-
-namespace ThreadingExample
+class Program
 {
-    class Program
+    static int total = 0;
+    public static void Main()
     {
-        public static void Main()
+
+        Thread T1 = new Thread(AddOneMillion);
+        Thread T2 = new Thread(AddOneMillion);
+        Thread T3 = new Thread(AddOneMillion);
+        T1.Start(); T2.Start(); T3.Start();
+        T1.Join(); T2.Join(); T3.Join();
+
+   
+        Console.WriteLine("Total: " + total);
+
+    }
+
+    static object _lock = new object();
+    public static void AddOneMillion()
+    {
+        for (int i = 0; i < 1000000; i++)
         {
-            Console.WriteLine("Main Thread Started");
-            Thread T1 = new Thread(Thread1Function);
-            T1.Start();
-
-            Thread T2 = new Thread(Thread2Function);
-            T2.Start();
-
-            if (T1.Join(1000))
+            lock (_lock)
             {
-                Console.WriteLine("Yes");
+                total++;
             }
-            else
-            {
-                Console.WriteLine("It will take a little bit more time to complete..");
-            }
-
-                T2.Join();
-
-            Console.WriteLine("Still Running..");
-        }
-
-        public static void Thread1Function()
-        {
-            Console.WriteLine("Thread1Function started...");
-            Thread.Sleep(5000);
-            Console.WriteLine("Thread one is about to return");
-        }
-
-        public static void Thread2Function()
-        {
-            Console.WriteLine("Thread2Function started...");
         }
     }
 }
