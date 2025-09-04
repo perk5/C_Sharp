@@ -21,9 +21,14 @@ class Program
     {
         for (int i = 0; i < 1000000; i++)
         {
-            lock (_lock)
+            Monitor.Enter(_lock);
+            try
             {
                 total++;
+            }
+            finally
+            {
+                Monitor.Exit(_lock);
             }
         }
     }
