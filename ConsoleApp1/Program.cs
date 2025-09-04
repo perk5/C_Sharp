@@ -1,50 +1,42 @@
 ﻿using System;
 
-namespace ThreadStartDelegateExample
+namespace ThreadingExample
 {
-    public delegate void SumOfNumbersCallback(int SumOfNumbers);
     class Program
     {
-        public static void PrintSumOfNumbers(int sum)
-        {
-            Console.WriteLine(sum); 
-        }
         public static void Main()
         {
-            Console.WriteLine("Please Enter the number: ");
-            int result = int.Parse(Console.ReadLine());
-
-            SumOfNumbersCallback callback = new SumOfNumbersCallback(PrintSumOfNumbers);
-
-            Number number = new Number(result, callback);
-            Thread T1 = new Thread(new ThreadStart(number.PrintNumbers));
+            Console.WriteLine("Main Thread Started");
+            Thread T1 = new Thread(Thread1Function);
             T1.Start();
-           
-        }
-    }
 
-    class Number
-    {
-        int _target;
-        SumOfNumbersCallback _sumOfNumbersCallback;
-        public Number(int target, SumOfNumbersCallback sumOfNumbersCallback)
-        {
-            this._target = target;
-            this._sumOfNumbersCallback = sumOfNumbersCallback;
-        }
+            Thread T2 = new Thread(Thread2Function);
+            T2.Start();
 
-        public void PrintNumbers()
-        {
-            int sum = 0;
-            for (int i = 1; i <= _target; i++)
+            if (T1.Join(1000))
             {
-                sum = sum + i;
+                Console.WriteLine("Yes");
+            }
+            else
+            {
+                Console.WriteLine("It will take a little bit more time to complete..");
             }
 
-            if(_sumOfNumbersCallback != null)
-            {
-                _sumOfNumbersCallback(sum);
-            }
+                T2.Join();
+
+            Console.WriteLine("Still Running..");
+        }
+
+        public static void Thread1Function()
+        {
+            Console.WriteLine("Thread1Function started...");
+            Thread.Sleep(5000);
+            Console.WriteLine("Thread one is about to return");
+        }
+
+        public static void Thread2Function()
+        {
+            Console.WriteLine("Thread2Function started...");
         }
     }
 }
